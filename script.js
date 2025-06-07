@@ -206,7 +206,7 @@ const slasherDaten = [
   {
     name: "THE WATCHER",
     klasse: "UMBRA",
-    gefahrenstufe: "DEVASTATING",
+    gefahrenstufe: "Devastating",
     infos: `
       <ul>
         <li>Gestalt eines extrem großen alten Mannes mit Mantel, Hut & runden Gläsern</li>
