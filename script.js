@@ -155,7 +155,7 @@ function renderSlasherListe(containerId) {
       <div id="info-${containerId}-${i}" class="slasher-info" style="display: none;">
         <p><strong>Klasse:</strong> ${s.klasse}</p>
         <p><strong>Gefahrenstufe:</strong> ${s.gefahrenstufe}</p>
-        <p><strong>- Infos:</strong><br>${s.infos}</p>
+        <p><strong>Infos:</strong><br>${s.infos}</p>
       </div>
     </div>
   `).join("");
@@ -174,7 +174,7 @@ function filterBy(type, value) {
       <div id="info-filter-${i}" class="slasher-info" style="display: none;">
         <p><strong>Klasse:</strong> ${s.klasse}</p>
         <p><strong>Gefahrenstufe:</strong> ${s.gefahrenstufe}</p>
-        <p><strong>- Infos:</strong><br>${s.infos}</p>
+        <p><strong>Infos:</strong><br>${s.infos}</p>
       </div>
     </div>
   `).join("");
