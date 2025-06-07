@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SlashcoVR Website</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <nav>
+    <button onclick="openTab('slasher')">Slasher</button>
+    <button onclick="openTab('items')">Items</button>
+    <button onclick="openTab('filter')">Slasher-Finder</button>
+  </nav>
+
+  <main>
+    <section id="slasher" class="tab">
+      <h2>Slasher</h2>
+      <div id="slasher-list"></div>
+    </section>
+    <section id="items" class="tab" style="display:none">
+      <h2>Items</h2>
+      <div id="item-list"></div>
+    </section>
+    <section id="filter" class="tab" style="display:none">
+      <h2>Slasher-Finder</h2>
+      <label for="difficulty">Wähle Schwierigkeit:</label>
+      <select id="difficulty" onchange="filterSlasher()">
+        <option value="">Alle</option>
+        <option value="Leicht">Leicht</option>
+        <option value="Mittel">Mittel</option>
+        <option value="Schwer">Schwer</option>
+      </select>
+      <div id="filter-results"></div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
