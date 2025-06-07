@@ -1,38 +1,39 @@
-const slasherData = [
-  { name: "The Skin Thief", difficulty: "Mittel", description: "Verkleidet sich als Überlebender." },
-  { name: "Bobby", difficulty: "Leicht", description: "Klassischer Verfolger." },
-  { name: "Shadow Man", difficulty: "Schwer", description: "Kann sich teleportieren." }
-];
-
-const itemData = [
-  { name: "Taschenlampe", description: "Leuchtet dunkle Bereiche aus." },
-  { name: "Medkit", description: "Heilt dich." }
-];
-
-function openTab(tabId) {
-  document.querySelectorAll(".tab").forEach(tab => {
-    tab.style.display = tab.id === tabId ? "block" : "none";
-  });
+function openTab(tabName) {
+  const tabs = document.getElementsByClassName('tabcontent');
+  for (let tab of tabs) {
+    tab.style.display = 'none';
+  }
+  document.getElementById(tabName).style.display = 'block';
 }
 
-function renderList(data, containerId) {
-  const container = document.getElementById(containerId);
-  container.innerHTML = "";
-  data.forEach(entry => {
-    const div = document.createElement("div");
-    div.className = "card";
-    div.innerHTML = `<strong>${entry.name}</strong><br>${entry.description}`;
-    container.appendChild(div);
-  });
-}
+// Beispiel-Daten für Slasher
+const slasherDaten = [
+  { name: "Bubba", klasse: "jäger", gefahr: "mittel" },
+  { name: "Ghostie", klasse: "stalker", gefahr: "schwer" },
+  { name: "Zalgo", klasse: "chaotisch", gefahr: "extrem" },
+  { name: "Daisy", klasse: "jäger", gefahr: "leicht" },
+];
 
 function filterSlasher() {
-  const selected = document.getElementById("difficulty").value;
-  const filtered = slasherData.filter(s => !selected || s.difficulty === selected);
-  renderList(filtered, "filter-results");
-}
+  const klasse = document.getElementById("klasse").value;
+  const gefahr = document.getElementById("gefahrenstufe").value;
 
-// Initial render
-renderList(slasherData, "slasher-list");
-renderList(itemData, "item-list");
-filterSlasher(); // optional für Startansicht
+  const gefiltert = slasherDaten.filter(s => {
+    return (klasse === "" || s.klasse === klasse) &&
+           (gefahr === "" || s.gefahr === gefahr);
+  });
+
+  const ergebnisDiv = document.getElementById("filterErgebnis");
+  if (gefiltert.length === 0) {
+    ergebnisDiv.innerHTML = "<p>Kein Slasher gefunden.</p>";
+    return;
+  }
+
+  ergebnisDiv.innerHTML = gefiltert.map(s =>
+    `<div class="slasher-card">
+       <h3>${s.name}</h3>
+       <p>Klasse: ${s.klasse}</p>
+       <p>Gefahrenstufe: ${s.gefahr}</p>
+     </div>`
+  ).join("");
+}

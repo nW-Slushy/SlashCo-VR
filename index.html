@@ -1,40 +1,134 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SlashcoVR Website</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <title>SlashCoVR Website</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
-  <nav>
+
+  <h1>SlashCoVR</h1>
+
+  <div class="tabs">
     <button onclick="openTab('slasher')">Slasher</button>
     <button onclick="openTab('items')">Items</button>
-    <button onclick="openTab('filter')">Slasher-Finder</button>
-  </nav>
+    <button onclick="openTab('finder')">Slasher-Finder</button>
+  </div>
 
-  <main>
-    <section id="slasher" class="tab">
-      <h2>Slasher</h2>
-      <div id="slasher-list"></div>
-    </section>
-    <section id="items" class="tab" style="display:none">
-      <h2>Items</h2>
-      <div id="item-list"></div>
-    </section>
-    <section id="filter" class="tab" style="display:none">
-      <h2>Slasher-Finder</h2>
-      <label for="difficulty">Wähle Schwierigkeit:</label>
-      <select id="difficulty" onchange="filterSlasher()">
-        <option value="">Alle</option>
-        <option value="Leicht">Leicht</option>
-        <option value="Mittel">Mittel</option>
-        <option value="Schwer">Schwer</option>
-      </select>
-      <div id="filter-results"></div>
-    </section>
-  </main>
+  <!-- Tab: Slasher -->
+  <div id="slasher" class="tabcontent">
+    <h2>Alle Slasher</h2>
+    <div class="slasher-card">
+      <h3>SID</h3>
+      <p>Klasse: DEMON</p>
+      <p>Gefahrenstufe: Considerable</p>
+    </div>
+    <div class="slasher-card">
+      <h3>THIRSTY</h3>
+      <p>Klasse: DEMON</p>
+      <p>Gefahrenstufe: Considerable</p>
+    </div>
+    <div class="slasher-card">
+      <h3>DOLPHINMAN</h3>
+      <p>Klasse: CRYPTID</p>
+      <p>Gefahrenstufe: Considerable</p>
+    </div>
+    <div class="slasher-card">
+      <h3>BORGMIRE</h3>
+      <p>Klasse: CRYPTID</p>
+      <p>Gefahrenstufe: Considerable</p>
+    </div>
+    <div class="slasher-card">
+      <h3>THE BEAST</h3>
+      <p>Klasse: UMBRA</p>
+      <p>Gefahrenstufe: Considerable</p>
+    <div class="slasher-card">
+      <h3>PRINCESS</h3>
+      <p>Klasse: DEMON</p>
+      <p>Gefahrenstufe: Considerable</p>
+    </div>
+    <div class="slasher-card">
+      <h3>THE GROUCH</h3>
+      <p>Klasse: DEMON</p>
+      <p>Gefahrenstufe: Moderate</p>
+    </div>
+    <div class="slasher-card">
+      <h3>FATHER ELMER</h3>
+      <p>Klasse: CRYPTID</p>
+      <p>Gefahrenstufe: Moderate</p>
+    </div>
+    <div class="slasher-card">
+      <h3>BABABOOEY</h3>
+      <p>Klasse: CRYPTID</p>
+      <p>Gefahrenstufe: Moderate</p>
+    </div>
+    <div class="slasher-card">
+      <h3>ABOMIGNAT</h3>
+      <p>Klasse: CRYPTID</p>
+      <p>Gefahrenstufe: Moderate</p>
+    </div>
+    <div class="slasher-card">
+      <h3>IGOR</h3>
+      <p>Klasse: DEMON</p>
+      <p>Gefahrenstufe: Devastating</p>
+    </div>
+    <div class="slasher-card">
+      <h3>THE WATCHER</h3>
+      <p>Klasse: UMBRA</p>
+      <p>Gefahrenstufe: Devastating</p>
+    </div>
+    <div class="slasher-card">
+      <h3>TROLLGE</h3>
+      <p>Klasse: UMBRA</p>
+      <p>Gefahrenstufe: Devastating</p>
+    </div>
+    <div class="slasher-card">
+      <h3>SPEEDRUNNER</h3>
+      <p>Klasse: CRYPTID</p>
+      <p>Gefahrenstufe: Devastating</p>
+    </div>
+  </div>
 
-  <script src="script.js"></script>
+  <!-- Tab: Items -->
+  <div id="items" class="tabcontent" style="display:none">
+    <h2>Alle Items</h2>
+    <ul>
+      <li>Mayonnaise</li>
+      <li>Milk Jug</li>
+      <li>Deathward</li>
+      <li>Cookie</li>
+    </ul>
+  </div>
+
+  <!-- Tab: Slasher-Finder -->
+  <div id="finder" class="tabcontent" style="display:none">
+    <h2>Slasher-Finder</h2>
+
+    <label for="klasse">Klasse:</label>
+    <select id="klasse">
+      <option value="">-- Klasse wählen --</option>
+      <option value="demon">DEMON</option>
+      <option value="cryptid">CRYPTID</option>
+      <option value="umbra">UMBRA</option>
+    </select>
+
+    <br><br>
+
+    <label for="gefahrenstufe">Gefahrenstufe:</label>
+    <select id="gefahrenstufe">
+      <option value="">-- Gefahrenstufe wählen --</option>
+      <option value="considerable">Considerable</option>
+      <option value="moderate">Moderate</option>
+      <option value="devastating">Devastating</option>
+    </select>
+
+    <br><br>
+
+    <button onclick="filterSlasher()">Filtern</button>
+
+    <div id="filterErgebnis" style="margin-top: 20px;"></div>
+  </div>
+
 </body>
 </html>
