@@ -1,75 +1,162 @@
+
 function openTab(tabName) {
-  const tabContents = document.getElementsByClassName("tabcontent");
-  for (let i = 0; i < tabContents.length; i++) {
-    tabContents[i].style.display = "none";
-  }
+  const tabs = document.getElementsByClassName("tabcontent");
+  for (let tab of tabs) tab.style.display = "none";
   document.getElementById(tabName).style.display = "block";
 }
 
-// Alle Slasher-Daten
 const slasherDaten = [
-  { name: "SID", klasse: "DEMON", gefahrenstufe: "Considerable" },
-  { name: "THIRSTY", klasse: "DEMON", gefahrenstufe: "Considerable" },
-  { name: "DOLPHINMAN", klasse: "CRYPTID", gefahrenstufe: "Considerable" },
-  { name: "BORGMIRE", klasse: "CRYPTID", gefahrenstufe: "Considerable" },
-  { name: "THE BEAST", klasse: "UMBRA", gefahrenstufe: "Considerable" },
-  { name: "PRINCESS", klasse: "DEMON", gefahrenstufe: "Considerable" },
-  { name: "THE GROUCH", klasse: "DEMON", gefahrenstufe: "Moderate" },
-  { name: "FATHER ELMER", klasse: "CRYPTID", gefahrenstufe: "Moderate" },
-  { name: "BABABOOEY", klasse: "CRYPTID", gefahrenstufe: "Moderate" },
-  { name: "ABOMIGNAT", klasse: "CRYPTID", gefahrenstufe: "Moderate" },
-  { name: "IGOR", klasse: "DEMON", gefahrenstufe: "Devastating" },
-  { name: "THE WATCHER", klasse: "UMBRA", gefahrenstufe: "Devastating" },
-  { name: "TROLLGE", klasse: "UMBRA", gefahrenstufe: "Devastating" },
-  { name: "SPEEDRUNNER", klasse: "CRYPTID", gefahrenstufe: "Devastating" }
+  {
+    name: "SID",
+    klasse: "DEMON",
+    gefahrenstufe: "Considerable",
+    infos: ""
+  },
+  {
+    name: "THIRSTY",
+    klasse: "DEMON",
+    gefahrenstufe: "Considerable",
+    infos: ""
+  },
+  {
+    name: "DOLPHINMAN",
+    klasse: "CRYPTID",
+    gefahrenstufe: "Considerable",
+    infos: `
+      <ul>
+        <li>Schnelles Fortbewegen im Wasser</li>
+        <li>Reagiert empfindlich auf Geräusche</li>
+      </ul>`
+  },
+  {
+    name: "BORGMIRE",
+    klasse: "CRYPTID",
+    gefahrenstufe: "Considerable",
+    infos: `
+      <ul>
+        <li>Lautes mechanisches Auftreten</li>
+        <li>Wutakkumulation sinkt während der Jagd</li>
+      </ul>`
+  },
+  {
+    name: "THE BEAST",
+    klasse: "UMBRA",
+    gefahrenstufe: "Considerable",
+    infos: ""
+  },
+  {
+    name: "PRINCESS",
+    klasse: "DEMON",
+    gefahrenstufe: "Considerable",
+    infos: `
+      <ul>
+        <li>Reagiert auf Puppen</li>
+        <li>Besitzt Beißattacke</li>
+        <li>Kann in der Nähe von Bierfässern betäubt werden</li>
+      </ul>`
+  },
+  {
+    name: "THE GROUCH",
+    klasse: "DEMON",
+    gefahrenstufe: "Moderate",
+    infos: `
+      <ul>
+        <li>Reagiert kaum auf Items</li>
+        <li>Setzt auf verzögerte Bewegungen und Überraschungen</li>
+      </ul>`
+  },
+  {
+    name: "FATHER ELMER",
+    klasse: "CRYPTID",
+    gefahrenstufe: "Moderate",
+    infos: ""
+  },
+  {
+    name: "BABABOOEY",
+    klasse: "CRYPTID",
+    gefahrenstufe: "Moderate",
+    infos: ""
+  },
+  {
+    name: "ABOMIGNAT",
+    klasse: "CRYPTID",
+    gefahrenstufe: "Moderate",
+    infos: ""
+  },
+  {
+    name: "IGOR",
+    klasse: "DEMON",
+    gefahrenstufe: "Devastating",
+    infos: `
+      <ul>
+        <li>Extrem hohe Chase-Speed (~6 m/s)</li>
+        <li>Reagiert sehr stark auf Geräusche</li>
+      </ul>`
+  },
+  {
+    name: "THE WATCHER",
+    klasse: "UMBRA",
+    gefahrenstufe: "Devastating",
+    infos: ""
+  },
+  {
+    name: "TROLLGE",
+    klasse: "UMBRA",
+    gefahrenstufe: "Devastating",
+    infos: ""
+  },
+  {
+    name: "SPEEDRUNNER",
+    klasse: "CRYPTID",
+    gefahrenstufe: "Devastating",
+    infos: `
+      <ul>
+        <li>Startet sehr langsam, Geschwindigkeit steigt mit seiner Wut</li>
+        <li>Wut wird sehr schnell passiv erhöht</li>
+        <li>Extrem empfindliches Gehör</li>
+        <li>Schlechtere Sichtweite</li>
+      </ul>`
+  }
 ];
 
-// Toggle Info-Feld
 function toggleInfo(id) {
-  const element = document.getElementById(id);
-  if (element.style.display === "none") {
-    element.style.display = "block";
-  } else {
-    element.style.display = "none";
-  }
+  const el = document.getElementById(id);
+  el.style.display = el.style.display === "none" ? "block" : "none";
 }
 
-// Für Haupt-Slasher-Tab
 function renderSlasherListe(containerId) {
   const container = document.getElementById(containerId);
   container.innerHTML = slasherDaten.map((s, i) => `
     <div class="slasher-card">
       <button class="slasher-button" onclick="toggleInfo('info-${containerId}-${i}')">${s.name}</button>
       <div id="info-${containerId}-${i}" class="slasher-info" style="display: none;">
-        <p>Klasse: ${s.klasse}</p>
-        <p>Gefahrenstufe: ${s.gefahrenstufe}</p>
+        <p><strong>Klasse:</strong> ${s.klasse}</p>
+        <p><strong>Gefahrenstufe:</strong> ${s.gefahrenstufe}</p>
+        <p><strong>- Infos:</strong><br>${s.infos}</p>
       </div>
     </div>
   `).join("");
 }
 
-// Für Finder
 function filterBy(type, value) {
   const gefiltert = slasherDaten.filter(s => s[type] === value);
-  const ergebnisContainer = document.getElementById("filterErgebnis");
-
+  const container = document.getElementById("filterErgebnis");
   if (gefiltert.length === 0) {
-    ergebnisContainer.innerHTML = "<p>Keine Slasher gefunden.</p>";
+    container.innerHTML = "<p>Keine Slasher gefunden.</p>";
     return;
   }
-
-  ergebnisContainer.innerHTML = gefiltert.map((s, i) =>
-    `<div class="slasher-card">
+  container.innerHTML = gefiltert.map((s, i) => `
+    <div class="slasher-card">
       <button class="slasher-button" onclick="toggleInfo('info-filter-${i}')">${s.name}</button>
       <div id="info-filter-${i}" class="slasher-info" style="display: none;">
-        <p>Klasse: ${s.klasse}</p>
-        <p>Gefahrenstufe: ${s.gefahrenstufe}</p>
+        <p><strong>Klasse:</strong> ${s.klasse}</p>
+        <p><strong>Gefahrenstufe:</strong> ${s.gefahrenstufe}</p>
+        <p><strong>- Infos:</strong><br>${s.infos}</p>
       </div>
-    </div>`
-  ).join("");
+    </div>
+  `).join("");
 }
 
-// Starte mit Anzeige im Slasher-Tab
 document.addEventListener("DOMContentLoaded", () => {
   renderSlasherListe("slasherListe");
   openTab("slasher");
