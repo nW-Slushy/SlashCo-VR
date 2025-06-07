@@ -29,6 +29,7 @@
       padding: 10px 15px;
       margin-right: 5px;
       cursor: pointer;
+      border-radius: 5px;
     }
 
     .tabs button:hover {
@@ -59,6 +60,51 @@
       border: 1px solid #555;
       padding: 5px;
     }
+
+    .button-row {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 10px 0;
+      flex-wrap: wrap;
+    }
+
+    .button-row button {
+      padding: 10px 16px;
+      background-color: #333;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .button-row button:hover {
+      background-color: #555;
+    }
+
+    .slasher-button {
+      background-color: #333;
+      color: white;
+      border: none;
+      padding: 12px;
+      width: 100%;
+      font-size: 1.1em;
+      border-radius: 5px;
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .slasher-button:hover {
+      background-color: #444;
+    }
+
+    .slasher-info {
+      margin-top: 10px;
+      padding: 8px;
+      background-color: #222;
+      border-radius: 4px;
+    }
   </style>
 </head>
 <body>
@@ -74,78 +120,7 @@
   <!-- Tab: Slasher -->
   <div id="slasher" class="tabcontent">
     <h2>Alle Slasher</h2>
-    <div class="slasher-grid">
-      <div class="slasher-card">
-        <h3>SID</h3>
-        <p>Klasse: DEMON</p>
-        <p>Gefahrenstufe: Considerable</p>
-      </div>
-      <div class="slasher-card">
-        <h3>THIRSTY</h3>
-        <p>Klasse: DEMON</p>
-        <p>Gefahrenstufe: Considerable</p>
-      </div>
-      <div class="slasher-card">
-        <h3>DOLPHINMAN</h3>
-        <p>Klasse: CRYPTID</p>
-        <p>Gefahrenstufe: Considerable</p>
-      </div>
-      <div class="slasher-card">
-        <h3>BORGMIRE</h3>
-        <p>Klasse: CRYPTID</p>
-        <p>Gefahrenstufe: Considerable</p>
-      </div>
-      <div class="slasher-card">
-        <h3>THE BEAST</h3>
-        <p>Klasse: UMBRA</p>
-        <p>Gefahrenstufe: Considerable</p>
-      </div>
-      <div class="slasher-card">
-        <h3>PRINCESS</h3>
-        <p>Klasse: DEMON</p>
-        <p>Gefahrenstufe: Considerable</p>
-      </div>
-      <div class="slasher-card">
-        <h3>THE GROUCH</h3>
-        <p>Klasse: DEMON</p>
-        <p>Gefahrenstufe: Moderate</p>
-      </div>
-      <div class="slasher-card">
-        <h3>FATHER ELMER</h3>
-        <p>Klasse: CRYPTID</p>
-        <p>Gefahrenstufe: Moderate</p>
-      </div>
-      <div class="slasher-card">
-        <h3>BABABOOEY</h3>
-        <p>Klasse: CRYPTID</p>
-        <p>Gefahrenstufe: Moderate</p>
-      </div>
-      <div class="slasher-card">
-        <h3>ABOMIGNAT</h3>
-        <p>Klasse: CRYPTID</p>
-        <p>Gefahrenstufe: Moderate</p>
-      </div>
-      <div class="slasher-card">
-        <h3>IGOR</h3>
-        <p>Klasse: DEMON</p>
-        <p>Gefahrenstufe: Devastating</p>
-      </div>
-      <div class="slasher-card">
-        <h3>THE WATCHER</h3>
-        <p>Klasse: UMBRA</p>
-        <p>Gefahrenstufe: Devastating</p>
-      </div>
-      <div class="slasher-card">
-        <h3>TROLLGE</h3>
-        <p>Klasse: UMBRA</p>
-        <p>Gefahrenstufe: Devastating</p>
-      </div>
-      <div class="slasher-card">
-        <h3>SPEEDRUNNER</h3>
-        <p>Klasse: CRYPTID</p>
-        <p>Gefahrenstufe: Devastating</p>
-      </div>
-    </div>
+    <div class="slasher-grid" id="slasherListe"></div>
   </div>
 
   <!-- Tab: Items -->
@@ -160,24 +135,23 @@
   </div>
 
   <!-- Tab: Slasher-Finder -->
-<div id="finder" class="tabcontent" style="display:none">
-  <h2>Slasher-Finder</h2>
+  <div id="finder" class="tabcontent">
+    <h2>Slasher-Finder</h2>
 
-  <div class="button-row">
-    <button onclick="filterBy('klasse', 'DEMON')">Demon</button>
-    <button onclick="filterBy('klasse', 'CRYPTID')">Cryptid</button>
-    <button onclick="filterBy('klasse', 'UMBRA')">Umbra</button>
+    <div class="button-row">
+      <button onclick="filterBy('klasse', 'DEMON')">Demon</button>
+      <button onclick="filterBy('klasse', 'CRYPTID')">Cryptid</button>
+      <button onclick="filterBy('klasse', 'UMBRA')">Umbra</button>
+    </div>
+
+    <div class="button-row">
+      <button onclick="filterBy('gefahrenstufe', 'Considerable')">Considerable</button>
+      <button onclick="filterBy('gefahrenstufe', 'Moderate')">Moderate</button>
+      <button onclick="filterBy('gefahrenstufe', 'Devastating')">Devastating</button>
+    </div>
+
+    <div id="filterErgebnis" class="slasher-grid" style="margin-top: 20px;"></div>
   </div>
-
-  <div class="button-row">
-    <button onclick="filterBy('gefahrenstufe', 'Considerable')">Considerable</button>
-    <button onclick="filterBy('gefahrenstufe', 'Moderate')">Moderate</button>
-    <button onclick="filterBy('gefahrenstufe', 'Devastating')">Devastating</button>
-  </div>
-
-  <div id="filterErgebnis" style="margin-top: 20px;"></div>
-</div>
-
 
 </body>
 </html>

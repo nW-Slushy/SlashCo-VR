@@ -6,7 +6,7 @@ function openTab(tabName) {
   document.getElementById(tabName).style.display = "block";
 }
 
-// Liste aller Slasher
+// Alle Slasher-Daten
 const slasherDaten = [
   { name: "SID", klasse: "DEMON", gefahrenstufe: "Considerable" },
   { name: "THIRSTY", klasse: "DEMON", gefahrenstufe: "Considerable" },
@@ -24,7 +24,31 @@ const slasherDaten = [
   { name: "SPEEDRUNNER", klasse: "CRYPTID", gefahrenstufe: "Devastating" }
 ];
 
-// Filterfunktion für Finder
+// Toggle Info-Feld
+function toggleInfo(id) {
+  const element = document.getElementById(id);
+  if (element.style.display === "none") {
+    element.style.display = "block";
+  } else {
+    element.style.display = "none";
+  }
+}
+
+// Für Haupt-Slasher-Tab
+function renderSlasherListe(containerId) {
+  const container = document.getElementById(containerId);
+  container.innerHTML = slasherDaten.map((s, i) => `
+    <div class="slasher-card">
+      <button class="slasher-button" onclick="toggleInfo('info-${containerId}-${i}')">${s.name}</button>
+      <div id="info-${containerId}-${i}" class="slasher-info" style="display: none;">
+        <p>Klasse: ${s.klasse}</p>
+        <p>Gefahrenstufe: ${s.gefahrenstufe}</p>
+      </div>
+    </div>
+  `).join("");
+}
+
+// Für Finder
 function filterBy(type, value) {
   const gefiltert = slasherDaten.filter(s => s[type] === value);
   const ergebnisContainer = document.getElementById("filterErgebnis");
@@ -34,11 +58,19 @@ function filterBy(type, value) {
     return;
   }
 
-  ergebnisContainer.innerHTML = gefiltert.map(s =>
+  ergebnisContainer.innerHTML = gefiltert.map((s, i) =>
     `<div class="slasher-card">
-      <h3>${s.name}</h3>
-      <p>Klasse: ${s.klasse}</p>
-      <p>Gefahrenstufe: ${s.gefahrenstufe}</p>
+      <button class="slasher-button" onclick="toggleInfo('info-filter-${i}')">${s.name}</button>
+      <div id="info-filter-${i}" class="slasher-info" style="display: none;">
+        <p>Klasse: ${s.klasse}</p>
+        <p>Gefahrenstufe: ${s.gefahrenstufe}</p>
+      </div>
     </div>`
   ).join("");
 }
+
+// Starte mit Anzeige im Slasher-Tab
+document.addEventListener("DOMContentLoaded", () => {
+  renderSlasherListe("slasherListe");
+  openTab("slasher");
+});
