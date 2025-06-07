@@ -1,39 +1,44 @@
 function openTab(tabName) {
-  const tabs = document.getElementsByClassName('tabcontent');
-  for (let tab of tabs) {
-    tab.style.display = 'none';
+  const tabContents = document.getElementsByClassName("tabcontent");
+  for (let i = 0; i < tabContents.length; i++) {
+    tabContents[i].style.display = "none";
   }
-  document.getElementById(tabName).style.display = 'block';
+  document.getElementById(tabName).style.display = "block";
 }
 
-// Beispiel-Daten für Slasher
+// Liste aller Slasher
 const slasherDaten = [
-  { name: "Bubba", klasse: "jäger", gefahr: "mittel" },
-  { name: "Ghostie", klasse: "stalker", gefahr: "schwer" },
-  { name: "Zalgo", klasse: "chaotisch", gefahr: "extrem" },
-  { name: "Daisy", klasse: "jäger", gefahr: "leicht" },
+  { name: "SID", klasse: "DEMON", gefahrenstufe: "Considerable" },
+  { name: "THIRSTY", klasse: "DEMON", gefahrenstufe: "Considerable" },
+  { name: "DOLPHINMAN", klasse: "CRYPTID", gefahrenstufe: "Considerable" },
+  { name: "BORGMIRE", klasse: "CRYPTID", gefahrenstufe: "Considerable" },
+  { name: "THE BEAST", klasse: "UMBRA", gefahrenstufe: "Considerable" },
+  { name: "PRINCESS", klasse: "DEMON", gefahrenstufe: "Considerable" },
+  { name: "THE GROUCH", klasse: "DEMON", gefahrenstufe: "Moderate" },
+  { name: "FATHER ELMER", klasse: "CRYPTID", gefahrenstufe: "Moderate" },
+  { name: "BABABOOEY", klasse: "CRYPTID", gefahrenstufe: "Moderate" },
+  { name: "ABOMIGNAT", klasse: "CRYPTID", gefahrenstufe: "Moderate" },
+  { name: "IGOR", klasse: "DEMON", gefahrenstufe: "Devastating" },
+  { name: "THE WATCHER", klasse: "UMBRA", gefahrenstufe: "Devastating" },
+  { name: "TROLLGE", klasse: "UMBRA", gefahrenstufe: "Devastating" },
+  { name: "SPEEDRUNNER", klasse: "CRYPTID", gefahrenstufe: "Devastating" }
 ];
 
-function filterSlasher() {
-  const klasse = document.getElementById("klasse").value;
-  const gefahr = document.getElementById("gefahrenstufe").value;
+// Filterfunktion für Finder
+function filterBy(type, value) {
+  const gefiltert = slasherDaten.filter(s => s[type] === value);
+  const ergebnisContainer = document.getElementById("filterErgebnis");
 
-  const gefiltert = slasherDaten.filter(s => {
-    return (klasse === "" || s.klasse === klasse) &&
-           (gefahr === "" || s.gefahr === gefahr);
-  });
-
-  const ergebnisDiv = document.getElementById("filterErgebnis");
   if (gefiltert.length === 0) {
-    ergebnisDiv.innerHTML = "<p>Kein Slasher gefunden.</p>";
+    ergebnisContainer.innerHTML = "<p>Keine Slasher gefunden.</p>";
     return;
   }
 
-  ergebnisDiv.innerHTML = gefiltert.map(s =>
+  ergebnisContainer.innerHTML = gefiltert.map(s =>
     `<div class="slasher-card">
-       <h3>${s.name}</h3>
-       <p>Klasse: ${s.klasse}</p>
-       <p>Gefahrenstufe: ${s.gefahr}</p>
-     </div>`
+      <h3>${s.name}</h3>
+      <p>Klasse: ${s.klasse}</p>
+      <p>Gefahrenstufe: ${s.gefahrenstufe}</p>
+    </div>`
   ).join("");
 }

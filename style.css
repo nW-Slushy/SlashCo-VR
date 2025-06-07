@@ -1,37 +1,20 @@
-body {
-  font-family: sans-serif;
-  background-color: #111;
-  color: #eee;
-  padding: 20px;
-}
-
-h1 {
-  text-align: center;
-}
-
-.tabs button {
-  padding: 10px 20px;
-  margin-right: 5px;
-  cursor: pointer;
-  background-color: #333;
-  color: #eee;
-  border: none;
-  border-radius: 5px;
-}
-
-.tabs button:hover {
-  background-color: #555;
-}
-
-.tabcontent {
-  margin-top: 20px;
-}
-
-.slasher-card {
-  background-color: #222;
-  color: white;
-  padding: 10px;
-  border-radius: 8px;
+.button-row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
   margin: 10px 0;
-  border-left: 5px solid #666;
+}
+
+.button-row button {
+  padding: 10px 16px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.button-row button:hover {
+  background-color: #555;
 }

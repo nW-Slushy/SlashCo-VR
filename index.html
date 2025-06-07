@@ -160,33 +160,24 @@
   </div>
 
   <!-- Tab: Slasher-Finder -->
-  <div id="finder" class="tabcontent">
-    <h2>Slasher-Finder</h2>
+<div id="finder" class="tabcontent" style="display:none">
+  <h2>Slasher-Finder</h2>
 
-    <label for="klasse">Klasse:</label>
-    <select id="klasse">
-      <option value="">-- Klasse wählen --</option>
-      <option value="demon">DEMON</option>
-      <option value="cryptid">CRYPTID</option>
-      <option value="umbra">UMBRA</option>
-    </select>
-
-    <br><br>
-
-    <label for="gefahrenstufe">Gefahrenstufe:</label>
-    <select id="gefahrenstufe">
-      <option value="">-- Gefahrenstufe wählen --</option>
-      <option value="considerable">Considerable</option>
-      <option value="moderate">Moderate</option>
-      <option value="devastating">Devastating</option>
-    </select>
-
-    <br><br>
-
-    <button onclick="filterSlasher()">Filtern</button>
-
-    <div id="filterErgebnis" style="margin-top: 20px;"></div>
+  <div class="button-row">
+    <button onclick="filterBy('klasse', 'DEMON')">Demon</button>
+    <button onclick="filterBy('klasse', 'CRYPTID')">Cryptid</button>
+    <button onclick="filterBy('klasse', 'UMBRA')">Umbra</button>
   </div>
+
+  <div class="button-row">
+    <button onclick="filterBy('gefahrenstufe', 'Considerable')">Considerable</button>
+    <button onclick="filterBy('gefahrenstufe', 'Moderate')">Moderate</button>
+    <button onclick="filterBy('gefahrenstufe', 'Devastating')">Devastating</button>
+  </div>
+
+  <div id="filterErgebnis" style="margin-top: 20px;"></div>
+</div>
+
 
 </body>
 </html>
