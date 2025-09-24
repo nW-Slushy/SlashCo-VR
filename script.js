@@ -231,6 +231,32 @@ const slasherDaten =
         <li>Schlechtere Sichtweite</li>
       </ul>`,
     taktik: `xxx`
+  },
+  {
+    name: "FEATHERFACE",
+    klasse: "CRYPTID",
+    gefahrenstufe: "Devastating",
+    infos: `
+      <ul>
+        <li>-</li>
+        <li>-</li>
+        <li>-</li>
+        <li>-</li>
+      </ul>`,
+    taktik: `xxx`
+  },
+  {
+    name: "MANSPIDER",
+    klasse: "CRYPTID",
+    gefahrenstufe: "Moderate",
+    infos: `
+      <ul>
+        <li>-</li>
+        <li>-</li>
+        <li>-</li>
+        <li>-</li>
+      </ul>`,
+    taktik: `xxx`
   }
 ]
 ;
