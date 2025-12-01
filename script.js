@@ -257,6 +257,32 @@ const slasherDaten =
         <li>-</li>
       </ul>`,
     taktik: `xxx`
+  },
+  {
+    name: "THE ENTITY",
+    klasse: "UMBRA",
+    gefahrenstufe: "Moderate",
+    infos: `
+      <ul>
+        <li>Wenn er dich sieht schreit er und wird dann unsichtbar (Kann trotzdem noch töten)</li>
+        <li>Während er unsichtbar ist hört man ihn sehr gut anhand der Metallisch klingenden Steps</li>
+        <li>-</li>
+        <li>-</li>
+      </ul>`,
+    taktik: `xxx`
+  },
+  {
+    name: "SMILEY DEALER",
+    klasse: "UMBRA",
+    gefahrenstufe: "Devastating",
+    infos: `
+      <ul>
+        <li>Spawnt kleine Talibane die auf der map rumlaufen</li>
+        <li>Die Talibane können Slowen bevor sie hochgehen oder sie gehen direkt hoch</li>
+        <li>-</li>
+        <li>-</li>
+      </ul>`,
+    taktik: `xxx`
   }
 ]
 ;
